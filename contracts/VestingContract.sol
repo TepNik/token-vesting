@@ -192,7 +192,8 @@ contract VestingContract is Ownable, IVestingContract {
                 if (percentStart == 0) {
                     percentStart = _firstPercent[_firstPercentLength - 1];
 
-                    percentStart /= 2 * ((year - _firstPercentLength + 3) / 4);
+                    uint256 amountOfMissedDivisions = ((year - _firstPercentLength + 3) / 4);
+                    percentStart /= 2 ** amountOfMissedDivisions;
                 }
 
                 if ((year - _firstPercentLength) % 4 == 0) {
